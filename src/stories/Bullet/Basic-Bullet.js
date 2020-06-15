@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 
 import Plot from 'react-plotly.js';
 
-import {text, color,number,select} from "@storybook/addon-knobs";
+/* importing required knobs */
+import {text, color,number} from "@storybook/addon-knobs";
 
 
 class Bullet extends Component {
@@ -27,10 +28,7 @@ class Bullet extends Component {
     const defaultValue2 ='orange';
     const color2 = color(label4, defaultValue2);
 
-    const refer = number("Delta Reference Value", 200);
-
-
-    
+    const refer = number("Delta Reference Value", 200);    
     
     const name1 = text("Title for bullet-1", "Revenue");
     const name2 = text("Title for bullet-2", "Profit");

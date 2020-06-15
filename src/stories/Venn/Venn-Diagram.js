@@ -5,17 +5,24 @@ import React, { Component } from 'react';
 
 import Plot from 'react-plotly.js';
 
-import {text, color,number} from "@storybook/addon-knobs";
+import {text, color,number,select} from "@storybook/addon-knobs";
 
 class Tree extends Component {
   render() {
     const name = text("Title", "Venn Diagram");
+
     const label = 'Color1';
-    const defaultValue = '#ffd31d';
+    const defaultValue = '#127681';
     const color1 = color(label, defaultValue);
+
     const label2 = 'Color2';
-    const defaultValue2 = '#d9455f';
+    const defaultValue2 = '#ea907a';
     const color2 = color(label2, defaultValue2);
+
+    const color3 = color("Line Color", "#444");
+
+    const width = number("Line Width", 3);
+
     const label1 = 'Opacity';
     const options = {
       range: true,
@@ -23,14 +30,22 @@ class Tree extends Component {
       max: 1,
       step: 0.1,
    };
-    const value2 = number(label1, 1, options);
-    const value3 = text("Orientation", "v");
-    const gap = number("Bargap", 0);
+    const opac = number(label1, 0.6, options);
+
+    const text1 = text("Text on plot-1", "A");
+    const text2 = text("Text on plot-2", "B");
+    const text3 = text("Common text", "A + B");
+   
+    const tcolor = color("Text Color", "Black");
+
+    const tsize = number("Text Size", 20);
+    
+    const options1 = [ "Arial", "Balto", "Courier New", "Droid Sans","Gravitas One", "Old Standard TT", "Open Sans", "Raleway", "Times New Roman"]
+    const tfamily = select("Text Family", options1, "#Arial");
+
+  
     return (
       <div className="body">
-      <h1>
-      Stacked Column
-      </h1>
       <Plot className="plot"
         data={[
             {
@@ -38,11 +53,11 @@ class Tree extends Component {
   y: [1, 1, 1],
   type: 'scatter',
   mode: 'text',
-  text: ['A', 'A+B', 'B'],
+  text: [text1, text3, text2],
   textfont: {
-    color: 'black',
-    size: 18,
-    family: 'Arial'
+    color: `${tcolor}`,
+    size: `${tsize}`,
+    family: `${tfamily}`
   }
             }
 
@@ -64,27 +79,31 @@ class Tree extends Component {
     opacity: 0.3,
     xref: 'x',
     yref: 'y',
-    fillcolor: 'blue',
+    fillcolor: `${color1}`,
+    opacity: `${opac}`,
     x0: 0,
     y0: 0,
     x1: 2,
     y1: 2,
     type: 'circle',
     line: {
-      color: 'blue'
+      color: `${color3}`,
+      width:`${width}`
     }
   }, {
     opacity: 0.3,
     xref: 'x',
     yref: 'y',
-    fillcolor: 'gray',
+    fillcolor: `${color2}`,
+    opacity: `${opac}`,
     x0: 1.5,
     y0: 0,
     x1: 3.5,
     y1: 2,
     type: 'circle',
     line: {
-      color: 'gray'
+      color: `${color3}`,
+      width: `${width}`
     }
   }],
   margin: {

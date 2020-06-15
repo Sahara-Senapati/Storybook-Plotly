@@ -11,14 +11,18 @@ import {text, color,number,select} from "@storybook/addon-knobs";
 class ColumnLine extends Component {
   render() {
     const name = text("Title", "Column + Line");
+
     const xlabel=text("x-axis label","Year") ;
     const ylabel=text("y-axis label","Percentage increase") ;
+
     const label = 'Line Color';
     const defaultValue ='#0a97b0';
     const color1 = color(label, defaultValue);
+
     const label2 = 'Bar Color';
     const defaultValue2 ='orange';
     const color2 = color(label2, defaultValue2);
+
    const option = {
      range: true,
      min: -180,
@@ -26,6 +30,7 @@ class ColumnLine extends Component {
      step: 20,
   };
   const angle= number('x-axis tick angle', -45 , option);
+
     const label1 = 'Marker Opacity';
     const options = {
       range: true,
@@ -36,27 +41,26 @@ class ColumnLine extends Component {
     const opac = number(label1, 1,options);
 
     const label3 = 'Bar Opacity';
-    const options2 = {
-      range: true,
-      min: 0,
-      max: 1,
-      step: 0.1,
-   };
-    const opac2 = number(label3, 1,options2);
+    const opac2 = number(label3, 1,options);
 
     const value = number("Marker Size", 12);
+
     const value2 = number("Line Width", 5);
+
     const option1 = ["lines","lines+markers","none"]  
     const mode = select("Mode", option1, "lines+markers");
-    const options4 = [0,0.5,1]  
+
+    const options4 = [0,1]  
     const xlegend = select("X-Legend", options4, 1);
     const label5 = 'Y-Legend';
-    const options5 = [0,0.5,1]  
-    const ylegend = select(label5, options5, 1);
+    const ylegend = select(label5, options4, 1);
+
     const legend1=text("Legend for Line Plot","2018 sales");
     const legend2=text("Legend for Bar Chart","2019 sales");
+
     const options3 = ["linear","spline","hv","vh","hvh","vhv"]  ;
     const shape = select("Line Shape", options3, "linear");
+    
     const options6 = ["solid", "dot", "dash", "longdash", "dashdot",  "longdashdot"]  
     const dash= select("Dash style", options6, "solid");
     

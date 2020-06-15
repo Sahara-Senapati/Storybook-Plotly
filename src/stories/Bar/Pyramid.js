@@ -4,20 +4,25 @@ import React, { Component } from 'react';
 
 import Plot from 'react-plotly.js';
 
+/* importing required knobs */
 import {text, color,number,select} from "@storybook/addon-knobs";
 
 
 class Population extends Component {
   render() {
     const name = text("Title", "Population Pyramid");
+
     const xlabel=text("x-axis label","X-axis") ;
     const ylabel=text("y-axis label","Y-axis") ;
+
     const label = 'Color1';
     const defaultValue ='#ffd31d';
     const color1 = color(label, defaultValue);
+
     const label2 = 'Color2';
     const defaultValue2 = '#d9455f';
     const color2 = color(label2, defaultValue2);
+
     const label1 = 'Opacity';
     const options = {
       range: true,
@@ -34,17 +39,25 @@ class Population extends Component {
      max: 180,
      step: 20,
   };
-  const angle= number(label3, -45 , options2);
+  const xangle= number(label2, -45 , options2);
+  const yangle= number("y-axis tick angle", -45 , options2);
+
     const value3 = text("Orientation", "h");
+
+    const option1 = ['inside', 'outside','auto','none'];
+    const dValue1 = 'inside';    
+    const tpos = select("Text position", option1, dValue1);
+
     const gap = number("Bargap", 0.1);
+
     const width = number("Bar Width", 7);
 
     const legend1=text("Legend text of plot-1","Men");
-    const legend2=text("Legend text of plot-2","Women")
-    const options8 = [0,0.5,1]  
-    const xlegend = select('X-Legend', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend', options9, 1);
+    const legend2=text("Legend text of plot-2","Women");
+
+    const options8 = [0,1]  
+    const xlegend = select('X-Legend coordinates', options8, 1);
+    const ylegend = select('Y-Legend coordinates', options8, 1);
     return (
         <div className="body">
       <Plot className="plot"
@@ -55,7 +68,8 @@ class Population extends Component {
              width: `${width}` ,
              type: 'bar',
              hovertemplate: ' Value of x: %{x}<br> Value of y: %{y}<br>',
-             
+             texttemplate: 'x: %{x}<br> y: %{y}<br>',
+             textposition:`${tpos}` ,
              
                  x: [600, 623, 653, 650, 670, 578, 541, 360, 312, 170], 
                  y: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90], 
@@ -72,7 +86,8 @@ class Population extends Component {
              width: `${width}` ,
              type: 'bar',
              hovertemplate: ' Value of x: %{x}<br> Value of y: %{y}<br>',
-             
+             texttemplate: 'x: %{x}<br> y: %{y}<br>',
+             textposition:`${tpos}` ,
                 x: [-600, -623, -653, -650, -670, -578, -541, -411, -322, -230], 
                 y: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90], 
                 marker: {
@@ -89,10 +104,11 @@ class Population extends Component {
           xaxis: {
     title: `${xlabel}`,
     
-    tickangle: `${angle}`
+    tickangle: `${xangle}`
   },
   yaxis: {
     title: `${ylabel}`,
+    tickangle: `${yangle}`
     
   },
   legend: {

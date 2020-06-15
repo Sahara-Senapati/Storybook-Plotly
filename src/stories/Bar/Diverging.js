@@ -5,11 +5,7 @@ import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 
 
-
-/* JSON Editor styling */
-
-
-
+/* importing required knobs */
 import {text, color,number,select} from "@storybook/addon-knobs";
 
 
@@ -17,12 +13,16 @@ import {text, color,number,select} from "@storybook/addon-knobs";
 class Diverge extends Component {
   render() {
     const name = text("Title", "Diverging Bar Plot");
+
     const xlabel=text("x-axis label","X-axis") ;
     const ylabel=text("y-axis label","Y-axis") ;
+
     const label = 'Color1';
     const defaultValue = '#ffd31d';
     const value1 = color(label, defaultValue);
+
     const value2 = color('Color2', 'd9455f');
+
     const label1 = 'Opacity';
     const options = {
       range: true,
@@ -31,6 +31,7 @@ class Diverge extends Component {
       step: 0.1,
    };
     const value3 = number(label1, 0.9, options);
+
    const label2= 'x-axis tick angle';
    const options2 = {
      range: true,
@@ -38,16 +39,26 @@ class Diverge extends Component {
      max: 180,
      step: 20,
   };
-  const angle= number(label2, -45 , options2);
+  const xangle= number(label2, -45 , options2);
+  const yangle= number("y-axis tick angle", -45 , options2);
+
     const value4 = text("Orientation", "h");
+
+    const option1 = ['inside', 'outside','auto','none'];
+    const dValue1 = 'inside';    
+    const tpos = select("Text position", option1, dValue1);
+
     const legend1 = text("Legend of plot-1", "2016 sales");
     const legend2 = text("Legend of plot-2", "2017 sales");
+
     const gap = number("Bargap", 0.2);
+
     const width = number("Bar Width", 2);
-    const options8 = [0,0.5,1]  
-    const xlegend = select('X-Legend', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend', options9, 1);
+
+    const options8 = [0,1]  
+    const xlegend = select('X-Legend coordinates', options8, 1); 
+    const ylegend = select('Y-Legend coordinates', options8, 1);
+
     return (
       <div className="body">
        <Plot className="plot"
@@ -60,7 +71,8 @@ class Diverge extends Component {
              name:`${legend1}`,
              type: 'bar',
              hovertemplate: ' Value of x: %{x}<br> Value of y: %{y}<br>',
-             
+             texttemplate: 'x: %{x}<br> y: %{y}<br>',
+             textposition:`${tpos}` ,
              marker: {
              opacity:`${value3}` ,
              color: `${value1}`
@@ -77,7 +89,8 @@ class Diverge extends Component {
              name:`${legend2}`,
              type: 'bar',
              hovertemplate: ' Value of x: %{x}<br> Value of y: %{y}<br>',
-             
+             texttemplate: 'x: %{x}<br> y: %{y}<br>',
+             textposition:`${tpos}` ,
              marker: {
              opacity:`${value3}` ,
              color: `${value2}`
@@ -89,21 +102,21 @@ class Diverge extends Component {
         layout={ {width: 750, height: 520, showlegend: true,
                
           xaxis: {
-    title: `${xlabel}`,
+            title: `${xlabel}`,
     
-    tickangle: `${angle}`
-  },
-  yaxis: {
-    title: `${ylabel}`,
-    
-  },
+            tickangle: `${xangle}`
+          },
+          yaxis: {
+            title: `${ylabel}`,
+            tickangle: `${yangle}`
+          },
          
-  legend: {
-    x: `${xlegend}`,
-    y:`${ylegend}`
-  }, title: `${name}`, 
-  bargap:`${gap}`} }
-      />
+          legend: {
+            x: `${xlegend}`,
+            y:`${ylegend}`
+          }, title: `${name}`, 
+          bargap:`${gap}`} }
+              />
       
       </div>
     );

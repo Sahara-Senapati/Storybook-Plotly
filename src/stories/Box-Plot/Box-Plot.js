@@ -26,6 +26,7 @@ class BoxPlot extends Component {
     const label2 = 'Color2';
     const defaultValue2 ='#feb72b';
     const color2 = color(label2, defaultValue2);
+
     const title= 'x-axis tick angle';
    const options2 = {
      range: true,
@@ -34,8 +35,10 @@ class BoxPlot extends Component {
      step: 20,
   };
   const angle= number(title, -45 , options2);
+
     const legend1=text("Legend for plot-1","Set-1");
     const legend2=text("Legend for plot-2","Set-2");
+
     const option = {
       range: true,
       min: 0,
@@ -43,29 +46,22 @@ class BoxPlot extends Component {
       step: 0.1,
    };
     const width = number("Box width", 0.5, option);
+
     const options1 = ['v', 'h']  
   const orien = select("Orientation", options1, 'h');
+
   const label1 = 'Opacity';
-    const options = {
-      range: true,
-      min: 0,
-      max: 1,
-      step: 0.1,
-   };
-    const value2 = number(label1, 1, options);
+    
+    const value2 = number(label1, 1, option);
+
     const width1 = number("Line Width", 2);
+
     const options7 = ["linear","exclusive","inclusive"]  
     const method = select('Quartilemethod', options7, "linear");
-    const options8 = [0,0.5,1]  
-    const xlegend = select('X-Legend coordinates', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend coordinates', options9, 1);
-   
-    
-    
-   
 
-    
+    const options8 = [0,1]  
+    const xlegend = select('X-Legend coordinates', options8, 1);
+    const ylegend = select('Y-Legend coordinates', options8, 1); 
       
       
     return (

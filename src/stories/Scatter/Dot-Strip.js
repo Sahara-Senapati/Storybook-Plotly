@@ -10,6 +10,7 @@ import {text, color,number,select} from "@storybook/addon-knobs";
 class Dot extends Component {
   render() {
     const name = text("Title", "Dot Strip Plot");
+
     const value = number("Marker Size", 12);
 
     const xlabel=text("x-axis label","X-axis") ;
@@ -39,6 +40,7 @@ class Dot extends Component {
       step: 0.1,
    };
     const opac = number(label5, 1, options);
+
     const option = {
       range: true,
       min: -180,
@@ -49,14 +51,15 @@ class Dot extends Component {
 
     const options6 = ["circle","square","diamond","triangle-up", "pentagon","hexagon", "octagon","cross","x","star","hourglass"];
     const value6 = select("Marker Symbol", options6, "circle");
+
     const legend1=text("Legend for plot-1","2015 sales");
     const legend2=text("Legend for plot-2","2016 sales");
     const legend3=text("Legend for plot-3","2017 sales");
     const legend4=text("Legend for plot-4","2018 sales");
-    const options8 = [0,0.5,1]  
+
+    const options8 = [0,1]  
     const xlegend = select('X-Legend', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend', options9, 1);
+    const ylegend = select('Y-Legend', options8, 1);
     return (
       <div className="body">
       

@@ -16,11 +16,14 @@ import {text, number,select,array,color} from "@storybook/addon-knobs";
 class Timeline extends Component {
   render() {
     const name = text("Title", "Circle Timeline");
+    
     const xlabel=text("x-axis label","X-axis") ;
     const ylabel=text("y-axis label","Y-axis") ;
+
     const label = 'Marker Color';
     const defaultValue ='#0a97b0';
     const color1 = color(label, defaultValue);
+
     const label2 = 'Line Color';
     const defaultValue2 ='blue';
     const color2 = color(label2, defaultValue2);
@@ -35,14 +38,18 @@ class Timeline extends Component {
     const opac= number(label1, 1, options);
    
     const width= number("Line Width", 4);
+
     const options6 = ["circle","square","diamond","triangle-up", "pentagon","hexagon", "octagon","cross","x","star","hourglass"];
     const symbol = select("Bubble Symbol", options6, "circle");
+
     const legend1=text("Legend for plot-1","Group-A");
     const legend2=text("Legend for plot-2","Group-B");
     const legend3=text("Legend for plot-3","Group-C");
     const legend4=text("Legend for plot-4","Group-D");
+
     const options7 = ["solid", "dot", "dash", "longdash", "dashdot",  "longdashdot"]  
     const dash = select("Dash style", options7, "solid");
+
     const option = {
       range: true,
       min: -180,
@@ -50,6 +57,7 @@ class Timeline extends Component {
       step: 20,
    };
    const angle= number('x-axis tick angle', -45 , option);
+
     const options8 = [0,1]  
     const xlegend = select('X-Legend', options8, 1);
     const ylegend = select('Y-Legend', options8, 1);

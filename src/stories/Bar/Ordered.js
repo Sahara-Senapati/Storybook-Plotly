@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import Plot from 'react-plotly.js';
 
+/* importing required knobs */
 import {text, color,number,select} from "@storybook/addon-knobs";
 
 
@@ -11,11 +12,14 @@ import {text, color,number,select} from "@storybook/addon-knobs";
 class Order extends Component {
   render() {
     const name = text("Title", "Ordered Bar Plot");
+
     const xlabel=text("x-axis label","Month") ;
     const ylabel=text("y-axis label","Percent") ;
+
     const label = 'Color';
     const defaultValue = '1eb2a6';
     const value = color(label, defaultValue);
+
     const label1 = 'Opacity';
     const options = {
       range: true,
@@ -24,6 +28,7 @@ class Order extends Component {
       step: 0.1,
    };
     const value2 = number(label1, 1, options);
+
    const label2= 'x-axis tick angle';
    const options2 = {
      range: true,
@@ -31,15 +36,24 @@ class Order extends Component {
      max: 180,
      step: 20,
   };
-  const angle= number(label2, -45 , options2);
+  const xangle= number(label2, -45 , options2);
+  const yangle= number("y-axis tick angle", -45 , options2);
+
     const value3 = text("Orientation", "v");
+
+    const option1 = ['inside', 'outside','auto','none'];
+    const dValue1 = 'inside';    
+    const tpos = select("Text position", option1, dValue1);
+
     const gap = number("Bargap", 0.2);
+
     const width = number("Bar Width", 0.7);
-    const legend=text("Legend text","August")
-    const options8 = [0,0.5,1]  
-    const xlegend = select('X-Legend', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend', options9, 1);
+
+    const legend=text("Legend text","August");
+    
+    const options8 = [0,1]  
+    const xlegend = select('X-Legend coordinates', options8, 1);
+    const ylegend = select('Y-Legend coordinates', options8, 1);
     
     return (
       <div className="body">
@@ -53,6 +67,8 @@ class Order extends Component {
               name: `${legend}` ,
              width: `${width}` ,
              type: 'bar',
+             texttemplate: '%{x}<br> %{y}<br>',
+             textposition:`${tpos}` ,
              hovertemplate: ' Value of x: %{x}<br> Value of y: %{y}<br>',             
               marker: {
              opacity:`${value2}` ,
@@ -67,10 +83,11 @@ class Order extends Component {
           xaxis: {
     title: `${xlabel}`,
     
-    tickangle: `${angle}`
+    tickangle: `${xangle}`
   },
   yaxis: {
     title: `${ylabel}`,
+    tickangle: `${yangle}`
     
   },
   legend: {

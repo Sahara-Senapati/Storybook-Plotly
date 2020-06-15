@@ -16,8 +16,10 @@ import {text, number,select,color} from "@storybook/addon-knobs";
 class Calendar extends Component {
   render() {
     const name = text("Title", "Calendar Heatmap");
+
     const xlabel=text("x-axis label","Week") ;
     const ylabel=text("y-axis label","Month") ;
+
     const value = 'Opacity';
     const options = {
       range: true,
@@ -30,6 +32,7 @@ class Calendar extends Component {
     
     const gap1 = number("X-Gap", 2);
     const gap2 = number("Y-Gap", 2); 
+
     const label1 = 'Thickness of Colorbar';
     const options2 = {
       range: true,
@@ -38,6 +41,7 @@ class Calendar extends Component {
       step: 10,
    };
     const thick = number(label1, 30, options2);
+
     const label2= 'x-axis tick angle';
    const option2 = {
      range: true,
@@ -45,13 +49,15 @@ class Calendar extends Component {
      max: 180,
      step: 20,
   };
+  const angle= number(label2, -45 , option2);
+
   const color1 = color("Color for scale 1", '#d92027');
   const color2 = color("Color for scale 0", '#ffcd3c');
   const colorscaleValue = [
     [0, color2],
     [1, color1]
   ];
-  const angle= number(label2, -45 , option2);
+  
     const label3 = "Length of Colorbar";
     const options3 = {
         range: true,
@@ -60,7 +66,8 @@ class Calendar extends Component {
         step: 0.1,
      };
       const length = number(label3, 1, options3);
-      const options4 = ["left","center","right"]  
+
+    const options4 = ["left","center","right"]  
     const anchor1 = select('X-anchor', options4, "left"); 
     
      

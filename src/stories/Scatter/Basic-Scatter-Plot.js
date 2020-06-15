@@ -11,11 +11,14 @@ import {text, color,number,select} from "@storybook/addon-knobs";
 class Scatter extends Component {
   render() {
     const name = text("Title", "Scatter Plot");
+
     const xlabel=text("x-axis label","X-axis") ;
     const ylabel=text("y-axis label","Y-axis") ;
+
     const label = 'Color1';
     const defaultValue ='#0a97b0';
     const color1 = color(label, defaultValue);
+
     const label1 = 'Opacity';
     const options = {
       range: true,
@@ -24,10 +27,14 @@ class Scatter extends Component {
       step: 0.1,
    };
     const value2 = number(label1, 1, options);
+
     const value = number("Marker Size", 12);
+    
     const options6 = ["circle","square","diamond","triangle-up", "pentagon","hexagon", "octagon","cross","x","star","hourglass"];
     const value6 = select("Marker Symbol", options6, "circle");
+
     const legend1=text("Legend text","2018 sales");
+
     const option = {
       range: true,
       min: -180,
@@ -35,10 +42,11 @@ class Scatter extends Component {
       step: 20,
    };
    const angle= number('x-axis tick angle', -45 , option);
-    const options8 = [0,0.5,1]  
+
+    const options8 = [0,1]  
     const xlegend = select('X-Legend', options8, 1);
-    const options9 = [0,0.5,1]  
-    const ylegend = select('Y-Legend', options9, 1);
+    const ylegend = select('Y-Legend', options8, 1);
+    
     return (
       <div className="body">
       

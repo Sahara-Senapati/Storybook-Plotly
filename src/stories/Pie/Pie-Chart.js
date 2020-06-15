@@ -16,7 +16,8 @@ import {text, number,select,color} from "@storybook/addon-knobs";
 class Pie extends Component {
   render() {
     const name = text("Title", "Pie Chart");
-const label2 = 'Hole';
+    
+    const label2 = 'Hole';
     const options = {
       range: true,
       min: 0,
@@ -24,12 +25,15 @@ const label2 = 'Hole';
       step: 0.1,
    };
    const value2 = number(label2, 0, options);  
+
    const color1=color("Color 1","red");
     const color2=color("Color 2","yellow");
     const color3=color("Color 3","green");
     const colorall=[color1,color2,color3];
+
     const options1 = ["clockwise", "counterclockwise"]  
     const dir = select('Direction', options1, "counterclockwise");
+
     const options5 = {
       range: true,
       min: -360,
@@ -39,12 +43,12 @@ const label2 = 'Hole';
    const rotate = number("Rotate slice", 0, options5);  
    
     const options2 = ['inside', 'outside','auto', 'none']
-const defaultValue1 = 'outside';    
-const value1 = select("Text position", options2, defaultValue1);
+    const defaultValue1 = 'outside';    
+    const value1 = select("Text position", options2, defaultValue1);
+
     const options3 = [0,0.5,1]  
     const xlegend = select('X-Legend coordinates', options3, 1);
-    const options4 = [0,0.5,1]  
-    const ylegend = select('Y-Legend coordinates', options4, 1);
+    const ylegend = select('Y-Legend coordinates', options3, 1);
     
     
       

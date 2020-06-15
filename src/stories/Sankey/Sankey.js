@@ -16,12 +16,17 @@ import {text, number,select,color} from "@storybook/addon-knobs";
 class Sankey extends Component {
   render() {
     const name = text("Title", "Sankey Diagram");
-    const options = ["v", "h"]
+
+    const options = ["v", "h"];
     const value = select("Orientation", options, "h");
+
     const label = 'Color';
     const color1 = color(label, 'blue'); 
+
     const color2 = color("Line color", 'black'); 
+
     const width = number("Line width", 0.5); 
+
     const value1 = 'Thickness';
     const options1 = {
       range: true,
@@ -30,7 +35,9 @@ class Sankey extends Component {
       step: 10,
    };
     const thick = number(value1, 30, options1);
+
     const pad = number("Node padding", 30);
+    
     const options2 = ["all", "none","skip"]
     const info = select("Hoverinfo", options2, "all");
     
